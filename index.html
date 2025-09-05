@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Custom markers with Mapbox GL JS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.js"></script>
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+      .marker {
+        background-image: url('https://docs.mapbox.com/help/demos/custom-markers-gl-js/mapbox-icon.png');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <script>
+      mapboxgl.accessToken = 'pk.eyJ1Ijoic3RrYSIsImEiOiJjbWY2bmt1N2IwZm5lMmpwZjdmY2podWsxIn0.MvK6-phi34igxMvUPXHglw';
+
+      const geojson = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [20.975329488640035, 52.317124617521365] },
+            properties: {
+              title: 'Kia Ceed 1.4 2014 116 тисяч, 31000 злот, комбі, біла',
+              description: '320 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HAZsL.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [21.887829567122473, 52.801891837425764] },
+            properties: {
+              title: 'Kia Ceed 1.4 CVVT Spirit 2013 174 тисяч 30900 злот, комбі, сіра',
+              description: '406 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HC8rf.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [16.742965487005602, 50.89923659299943] },
+            properties: {
+              title: 'Kia Ceed 1.4 CVVT SW Dream-Team Edition 2013 180 тисяч, 30000 злот, компакт, чорна',
+              description: '213 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HuaGo.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [17.67304083122222, 51.575494321085024] },
+            properties: {
+              title: 'Kia Ceed 1.4 CVVT Attract 2014 89 тисяч, 29900 злот, компакт, червона',
+              description: '136 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HyLsS.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [21.029407167543265, 52.349281971875186] },
+            properties: {
+              title: 'Kia Ceed 1.4 CVVT Attract 2014 169 тисяч, 29900 злот, компакт, біла',
+              description: '325 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HzDGG.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [19.04681682699072, 49.802849426387525] },
+            properties: {
+              title: 'Kia Ceed Ceed 1.4 XL 2012 151 тисяч, 28900 злот, компакт, срібна',
+              description: '434 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HAewN.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [20.484930009999132, 50.887734188277214] },
+            properties: {
+              title: 'Kia Ceed 1.4 CVVT 2013 133 тисяч, 27900 злот, компакт, чорна',
+              description: '366 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HCa52.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [20.240577084660483, 52.22900200091631] },
+            properties: {
+              title: 'Kia Ceed 2014 128 тисяч, 25900 злот, компакт, сіра',
+              description: '275 км мій фаворит по ціні-комплектації',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HD27W.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [20.426452100586285, 53.36153261888888] },
+            properties: {
+              title: 'Kia Ceed 2014 176 тисяч, 27900 злот, комбі, сіра',
+              description: '355 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6Hxs7V.html'
+            }
+          },
+          {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [18.724474385588028, 50.67091451277715] },
+            properties: {
+              title: 'Kia Ceed 1.4 CVVT Fifa World Cup Edition 2014 156 тисяч, 27600 злот, комбі, чорна',
+              description: '350 км',
+              url: 'https://www.otomoto.pl/osobowe/oferta/kia-ceed-ID6HD4iJ.html'
+            }
+          },
+        ]
+      };
+
+      const map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v11',
+        center: [21, 52],
+        zoom: 6
+      });
+
+      geojson.features.forEach(feature => {
+        // створюємо HTML елемент маркера
+        const el = document.createElement('div');
+        el.className = 'marker';
+
+        // створюємо popup
+        const popup = new mapboxgl.Popup({ offset: 25, closeButton: false, closeOnClick: false })
+          .setHTML(`<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`);
+
+        // додаємо маркер
+        const marker = new mapboxgl.Marker(el)
+          .setLngLat(feature.geometry.coordinates)
+          .addTo(map);
+
+        // показ popup при наведенні
+        el.addEventListener('mouseenter', () => popup.addTo(map).setLngLat(feature.geometry.coordinates));
+        el.addEventListener('mouseleave', () => popup.remove());
+
+        // клік на маркер відкриває сторінку
+        el.addEventListener('click', () => {
+          window.open(feature.properties.url, '_blank');
+        });
+      });
+    </script>
+  </body>
+</html>
